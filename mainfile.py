@@ -1,7 +1,7 @@
 import random
 import arcade
 from game_state import GameState
-from attack_animation import AttackType, AttackAnimation
+from attack_anim import AttackType, AttackAnimation
 
 # Constantes de la fenêtre
 SCREEN_WIDTH = 1000
@@ -40,11 +40,11 @@ class MyGame(arcade.Window):
 
         # Chargement des avatars statiques du joueur et de l'ordinateur
         # (Ajustez les chemins ou noms de fichiers si nécessaire)
-        self.player_avatar = arcade.Sprite("assets/player.png", scale=0.6)
+        self.player_avatar = arcade.Sprite("assets/faceBeard.png", scale=0.6)
         self.player_avatar.center_x = 250
         self.player_avatar.center_y = 380
 
-        self.computer_avatar = arcade.Sprite("assets/computer.png", scale=0.6)
+        self.computer_avatar = arcade.Sprite("assets/compy.png", scale=0.6)
         self.computer_avatar.center_x = 750
         self.computer_avatar.center_y = 380
 
@@ -78,21 +78,22 @@ class MyGame(arcade.Window):
         self.player_avatar.draw()
         self.computer_avatar.draw()
 
-        # Dessiner les carrés (contours) contenant les images d'attaques
-        # 3 carrés pour le joueur
+
         arcade.draw_rectangle_outline(150, 200, 90, 90, arcade.color.PINK, border_width=2)
         arcade.draw_rectangle_outline(250, 200, 90, 90, arcade.color.PINK, border_width=2)
         arcade.draw_rectangle_outline(350, 200, 90, 90, arcade.color.PINK, border_width=2)
-        # 1 carré pour l'ordinateur
+
+
         arcade.draw_rectangle_outline(750, 200, 90, 90, arcade.color.PINK, border_width=2)
 
-        # Affichage du pointage en bas de l'écran
+
+
         arcade.draw_text(f"Le pointage du joueur est {self.player_score}", 250, 100,
                          arcade.color.WHITE, font_size=20, anchor_x="center")
         arcade.draw_text(f"Le pointage de l'ordinateur est {self.computer_score}", 750, 100,
                          arcade.color.WHITE, font_size=20, anchor_x="center")
 
-        # --- 2. AFFICHAGE DÉPENDANT DE L'ÉTAT DU JEU ---
+
         if self.game_state == GameState.NOT_STARTED:
             arcade.draw_text("Appuyer sur 'ESPACE' pour débuter une ronde!", SCREEN_WIDTH / 2, 570,
                              arcade.color.LIGHT_BLUE, font_size=24, anchor_x="center")
@@ -100,7 +101,7 @@ class MyGame(arcade.Window):
         elif self.game_state == GameState.ROUND_ACTIVE:
             arcade.draw_text("Appuyer sur une image pour faire une attaque!", SCREEN_WIDTH / 2, 570,
                              arcade.color.LIGHT_BLUE, font_size=24, anchor_x="center")
-            # En mode actif, on affiche les 3 choix cliquables du joueur
+
             self.rock.draw()
             self.paper.draw()
             self.scissors.draw()
