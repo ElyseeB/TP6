@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1fc4d57-5114-4685-aab6-adadce5741c8" name="Changes" comment="ajout des trois fichiers de TP6">
-      <change afterPath="$PROJECT_DIR$/assets/compy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/faceBeard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/scissors-close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/scissors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/spaper-attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/spaper.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/srock-attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/srock.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a1fc4d57-5114-4685-aab6-adadce5741c8" name="Changes" comment="reprer les erreurs et le code est bien fait">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_state.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainfile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +37,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -164,11 +156,20 @@
       <option name="project" value="LOCAL" />
       <updated>1779895606512</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="reprer les erreurs et le code est bien fait">
+      <option name="closed" value="true" />
+      <created>1780062329564</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1780062329564</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ajout des trois fichiers de TP6" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout des trois fichiers de TP6" />
+    <MESSAGE value="reprer les erreurs et le code est bien fait" />
+    <option name="LAST_COMMIT_MESSAGE" value="reprer les erreurs et le code est bien fait" />
   </component>
 </project>

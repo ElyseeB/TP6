@@ -13,7 +13,7 @@ class MyGame(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
 
-        # Définition de la couleur de fond (gris foncé comme dans les captures d'écran)
+        #couleur de fond
         arcade.set_background_color((54, 54, 54))
 
         # Variables de pointage
@@ -35,11 +35,11 @@ class MyGame(arcade.Window):
         # Sprite dynamique pour l'attaque choisie par l'ordinateur
         self.computer_attack_sprite = None
 
-        # Chaîne de texte pour afficher le résultat d'une ronde
+        # texte pour afficher le résultat d'une ronde
         self.round_result_text = ""
 
-        # Chargement des avatars statiques du joueur et de l'ordinateur
-        # (Ajustez les chemins ou noms de fichiers si nécessaire)
+
+
         self.player_avatar = arcade.Sprite("assets/faceBeard.png", scale=0.6)
         self.player_avatar.center_x = 250
         self.player_avatar.center_y = 380
@@ -51,11 +51,11 @@ class MyGame(arcade.Window):
         self.player_avatar_list.append(self.player_avatar)
         self.computer_avatar_list = arcade.SpriteList()
         self.computer_avatar_list.append(self.computer_avatar)
-        # Initialisation des éléments de jeu
+
         self.setup()
 
     def setup(self):
-        """ Initialise ou réinitialise les positions des sprites d'attaque """
+
         self.rock = AttackAnimation(AttackType.ROCK)
         self.rock.center_x = 150
         self.rock.center_y = 200
@@ -75,16 +75,16 @@ class MyGame(arcade.Window):
         """ Rendu graphique de l'écran """
         self.clear()
 
-        # --- 1. AFFICHAGE DES ÉLÉMENTS STATIQUES ---
+        # Affichages elements statistiques
         # Titre principal du jeu
         arcade.draw_text("Roche, papier, ciseaux", SCREEN_WIDTH / 2, 660,
                          arcade.color.RED_DEVIL, font_size=50, bold=True, anchor_x="center")
 
-        # Dessiner les avatars du joueur et de l'ordinateur
+        # Dessiner les avatars du joueur et l'ordinateur
         self.player_avatar_list.draw()
         self.computer_avatar_list.draw()
 
-        # Format: (left, right, bottom, top, color, border_width)
+        # Format:
         arcade.draw_lrbt_rectangle_outline(105, 195, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=150
         arcade.draw_lrbt_rectangle_outline(205, 295, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=250
         arcade.draw_lrbt_rectangle_outline(305, 395, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=350
@@ -119,7 +119,7 @@ class MyGame(arcade.Window):
             arcade.draw_text(self.round_result_text, SCREEN_WIDTH / 2, 480,
                              arcade.color.LIGHT_GREEN, font_size=26, anchor_x="center")
 
-            # Affiche l'attaque sélectionnée par le joueur et l'attaque de l'ordinateur
+            # Affiche l'attaque joueur et l'attaque de l'ordinateur
             player_attack_list = arcade.SpriteList()
             if self.player_attack_type == AttackType.ROCK:
                 player_attack_list.append(self.rock)
@@ -137,7 +137,7 @@ class MyGame(arcade.Window):
 
 
         elif self.game_state == GameState.GAME_OVER:
-            # Détermination du grand gagnant de la partie (premier à 3 points)
+            # Détermination du grand gagnant
             if self.player_score >= 3:
                 final_msg = "Vous avez gagné la partie!"
             else:
@@ -150,8 +150,8 @@ class MyGame(arcade.Window):
                              arcade.color.LIGHT_BLUE, font_size=20, anchor_x="center")
 
     def on_update(self, delta_time):
-        """ Logique d'animation et mise à jour des sprites """
-        # On met à jour l'animation des sprites selon l'état actuel pour qu'ils s'animent de façon fluide
+
+        # On met à jour l'animation des sprites selon l'état actuel
         if self.game_state == GameState.ROUND_ACTIVE:
             self.rock.on_update(delta_time)
             self.paper.on_update(delta_time)
@@ -193,7 +193,7 @@ class MyGame(arcade.Window):
                 self.game_state = GameState.ROUND_ACTIVE
 
     def on_mouse_press(self, x, y, button, key_modifiers):
-        """ Gestion des clics de souris pour sélectionner une attaque """
+
         if self.game_state == GameState.ROUND_ACTIVE:
             # Vérification du clic sur l'un des trois sprites à l'aide de collides_with_point
             clicked = False
@@ -208,7 +208,7 @@ class MyGame(arcade.Window):
                 clicked = True
 
             if clicked:
-                # 1. Génération de l'attaque aléatoire de l'ordinateur
+                # l'attaque aléatoire de l'ordinateur
                 pc_attack = random.randint(0, 2)
                 if pc_attack == 0:
                     self.computer_attack_type = AttackType.ROCK
@@ -220,11 +220,11 @@ class MyGame(arcade.Window):
                     self.computer_attack_type = AttackType.SCISSORS
                     self.computer_attack_sprite = AttackAnimation(AttackType.SCISSORS)
 
-                # Positionnement du sprite de l'ordinateur dans son carré (à droite)
+                # Positionnement du sprite de l'ordinateur
                 self.computer_attack_sprite.center_x = 750
                 self.computer_attack_sprite.center_y = 200
 
-                # 2. Validation des règles pour déterminer le vainqueur de la ronde
+                # 2. Validation des règles pour déterminer gagnant de la ronde
                 if self.player_attack_type == self.computer_attack_type:
                     self.round_result_text = "Égalité !"
                 elif (
