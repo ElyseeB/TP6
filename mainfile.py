@@ -44,10 +44,13 @@ class MyGame(arcade.Window):
         self.player_avatar.center_x = 250
         self.player_avatar.center_y = 380
 
-        self.computer_avatar = arcade.Sprite("assets/compy.png", scale=0.6)
+        self.computer_avatar = arcade.Sprite("assets/compy.png", scale=2.6)
         self.computer_avatar.center_x = 750
         self.computer_avatar.center_y = 380
-
+        self.player_avatar_list = arcade.SpriteList()
+        self.player_avatar_list.append(self.player_avatar)
+        self.computer_avatar_list = arcade.SpriteList()
+        self.computer_avatar_list.append(self.computer_avatar)
         # Initialisation des éléments de jeu
         self.setup()
 
@@ -65,6 +68,9 @@ class MyGame(arcade.Window):
         self.scissors.center_x = 350
         self.scissors.center_y = 200
 
+        self.attack_list = arcade.SpriteList()
+        self.attack_list.extend([self.rock, self.paper, self.scissors])
+
     def on_draw(self):
         """ Rendu graphique de l'écran """
         self.clear()
@@ -75,16 +81,17 @@ class MyGame(arcade.Window):
                          arcade.color.RED_DEVIL, font_size=50, bold=True, anchor_x="center")
 
         # Dessiner les avatars du joueur et de l'ordinateur
-        self.player_avatar.draw()
-        self.computer_avatar.draw()
+        self.player_avatar_list.draw()
+        self.computer_avatar_list.draw()
+
+        # Format: (left, right, bottom, top, color, border_width)
+        arcade.draw_lrbt_rectangle_outline(105, 195, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=150
+        arcade.draw_lrbt_rectangle_outline(205, 295, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=250
+        arcade.draw_lrbt_rectangle_outline(305, 395, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=350
+        arcade.draw_lrbt_rectangle_outline(705, 795, 155, 245, arcade.color.PINK, border_width=2)  # Centré à x=750
 
 
-        arcade.draw_rectangle_outline(150, 200, 90, 90, arcade.color.PINK, border_width=2)
-        arcade.draw_rectangle_outline(250, 200, 90, 90, arcade.color.PINK, border_width=2)
-        arcade.draw_rectangle_outline(350, 200, 90, 90, arcade.color.PINK, border_width=2)
 
-
-        arcade.draw_rectangle_outline(750, 200, 90, 90, arcade.color.PINK, border_width=2)
 
 
 
@@ -102,9 +109,8 @@ class MyGame(arcade.Window):
             arcade.draw_text("Appuyer sur une image pour faire une attaque!", SCREEN_WIDTH / 2, 570,
                              arcade.color.LIGHT_BLUE, font_size=24, anchor_x="center")
 
-            self.rock.draw()
-            self.paper.draw()
-            self.scissors.draw()
+
+            self.attack_list.draw()
 
         elif self.game_state == GameState.ROUND_DONE:
             arcade.draw_text("Appuyer sur 'ESPACE' pour commencer une nouvelle ronde!", SCREEN_WIDTH / 2, 570,
@@ -113,17 +119,22 @@ class MyGame(arcade.Window):
             arcade.draw_text(self.round_result_text, SCREEN_WIDTH / 2, 480,
                              arcade.color.LIGHT_GREEN, font_size=26, anchor_x="center")
 
-            # Affiche uniquement l'attaque sélectionnée par le joueur dans son carré respectif
+            # Affiche l'attaque sélectionnée par le joueur et l'attaque de l'ordinateur
+            player_attack_list = arcade.SpriteList()
             if self.player_attack_type == AttackType.ROCK:
-                self.rock.draw()
+                player_attack_list.append(self.rock)
             elif self.player_attack_type == AttackType.PAPER:
-                self.paper.draw()
+                player_attack_list.append(self.paper)
             elif self.player_attack_type == AttackType.SCISSORS:
-                self.scissors.draw()
+                player_attack_list.append(self.scissors)
 
-            # Affiche l'attaque choisie par l'ordinateur
             if self.computer_attack_sprite:
-                self.computer_attack_sprite.draw()
+                player_attack_list.append(self.computer_attack_sprite)
+
+            player_attack_list.draw()
+
+
+
 
         elif self.game_state == GameState.GAME_OVER:
             # Détermination du grand gagnant de la partie (premier à 3 points)
